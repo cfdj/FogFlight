@@ -1,0 +1,11 @@
+Label
+MeshInstance3D
+CSGBox3D
+SubViewport
+SubViewportContainer
+FogVolume
+WorldEnvironment
+DirectionalLight3D
+Camera3D
+CollisionShape3D
+CharacterBody3D

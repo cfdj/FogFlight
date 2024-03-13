@@ -1,0 +1,16 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1710350294
+CameraFollow.gd::GDScript::-1::1709716882::0::1::::<>Camera3D<>::
+Environment.tres::Environment::9135448107833096144::1709913800::0::1::::<><>::uid://b82c2u8etrdwo::::res://Sky.tres
+FogTexture.png::CompressedTexture2D::6029563612954171580::1709726112::1709726120::1::::<><>::
+Ground.gdshader::Shader::-1::1709914336::0::1::::<><>::
+icon.svg::CompressedTexture2D::3048403237518956711::1709653733::1709653747::1::::<><>::
+plane.obj::Mesh::1342094416653814813::1709655308::1709655559::1::::<><>::
+PlaneControl.gd::GDScript::-1::1709728939::0::1::::<>CharacterBody3D<>::
+PlaneTexture.png::CompressedTexture2D::4768510328488155247::1709654869::1709655333::1::::<><>::
+plane_tex.png::CompressedTexture2D::1082710907743568422::1709655600::1709655609::1::::<><>::
+Sky.tres::Sky::4758561475182101886::1709913800::0::1::::<><>::uid://cfp1fbnbuofx1::::res://SkyText.png
+SkyText.png::CompressedTexture2D::5156338895347239756::1709715292::1709715455::1::::<><>::
+Visual1.tres::VisualShader::3506302079249695082::1709913801::0::1::::<><>::
+World.gdshader::Shader::-1::1709914336::0::1::::<><>::
+World.tscn::PackedScene::8340815717297922714::1709913800::0::1::::<><>::res://World.gdshader<>res://PlaneControl.gd<>uid://teedmnruj76x::::res://plane.obj<>uid://poqdctu7uwwc::::res://plane_tex.png<>res://CameraFollow.gd<>uid://d3fjq37iwt6cy::::res://Environment.tres<>res://Ground.gdshader

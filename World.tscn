@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://dq3mas151fhss"]
+
+[ext_resource type="Shader" path="res://World.gdshader" id="1_1ig4e"]
+[ext_resource type="Script" path="res://PlaneControl.gd" id="1_2nd4u"]
+[ext_resource type="ArrayMesh" uid="uid://teedmnruj76x" path="res://plane.obj" id="1_fdevv"]
+[ext_resource type="Texture2D" uid="uid://poqdctu7uwwc" path="res://plane_tex.png" id="2_ute84"]
+[ext_resource type="Script" path="res://CameraFollow.gd" id="4_auwlk"]
+[ext_resource type="Environment" uid="uid://d3fjq37iwt6cy" path="res://Environment.tres" id="4_v6c8f"]
+[ext_resource type="Shader" path="res://Ground.gdshader" id="7_df2sl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hjgt"]
+shader = ExtResource("1_1ig4e")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqggj"]
+albedo_texture = ExtResource("2_ute84")
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_apcj7"]
+size = Vector3(3, 1, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4j0fb"]
+render_priority = 0
+shader = ExtResource("7_df2sl")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_frmpy"]
+material = SubResource("ShaderMaterial_4j0fb")
+size = Vector2(50, 100)
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_2hjgt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("body")]
+motion_mode = 1
+script = ExtResource("1_2nd4u")
+speed = 10.0
+turnRate = 0.1
+pitchRate = 0.1
+rollRate = 0.1
+body = NodePath("Plane")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 7)
+environment = ExtResource("4_v6c8f")
+script = ExtResource("4_auwlk")
+
+[node name="Plane" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+mesh = ExtResource("1_fdevv")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_xqggj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.519683, 0.854359, 0, -0.854359, 0.519683, 0, 7, 3.48431)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_apcj7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = ExtResource("4_v6c8f")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -11)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -2, -9)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -43)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.56793, -48.1238)
+mesh = SubResource("PlaneMesh_frmpy")
